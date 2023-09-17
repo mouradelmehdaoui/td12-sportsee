@@ -3,11 +3,14 @@ import MainDataModel from './MainDataModel'
 import ActivityModel from './ActivityModel'
 import SessionsModel from './SessionsModel'
 import PerformanceModel from './PerformanceModel'
+import environment from '../../environment/environment'
+
+const HOST = environment.host;
 
 export const getMainData = async (user) => {
 	let errorCode = null
 	// Je précise l'url de l'API pour récupérer les données principales de l'utilisateur
-	let mainDataUrl = `http://localhost:3000/user/${user}`
+	let mainDataUrl = `${HOST}/user/${user}`
 
 	try {
 		const userMain = await axios.get(mainDataUrl)
@@ -25,7 +28,7 @@ export const getMainData = async (user) => {
 
 export const getActivityData = async (user) => {
 	// Je précise l'url de l'API pour récupérer les données d'activité de l'utilisateur
-	let activityDataUrl = `http://localhost:3000/user/${user}/activity`
+	let activityDataUrl = `${HOST}//user/${user}/activity`
 
 	try {
 		const userActivity = await axios.get(activityDataUrl)
@@ -38,7 +41,7 @@ export const getActivityData = async (user) => {
 
 export const getSessionsData = async (user) => {
 	// Je précise l'url de l'API pour récupérer les données de sessions de l'utilisateur
-	let sessionsDataUrl = `http://localhost:3000/user/${user}/average-sessions`
+	let sessionsDataUrl = `${HOST}/user/${user}/average-sessions`
 
 	try {
 		const userSessions = await axios.get(sessionsDataUrl)
@@ -51,7 +54,7 @@ export const getSessionsData = async (user) => {
 
 export const getPerformanceData = async (user) => {
 	// Je précise l'url de l'API pour récupérer les données de performance de l'utilisateur
-	let performanceDataUrl = `http://localhost:3000/user/${user}/performance`
+	let performanceDataUrl = `${HOST}/user/${user}/performance`
 
 	try {
 		const userPerformance = await axios.get(performanceDataUrl)

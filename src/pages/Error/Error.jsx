@@ -1,5 +1,4 @@
-import VerticalNav from '../../components/VerticalNav/VerticalNav'
-import HorizontalNav from '../../components/HorizontalNav/HorizontalNav'
+
 // J'utilise le hook useLocation pour récupérer le message d'erreur dans le state
 import { useLocation } from 'react-router-dom'
 
@@ -15,8 +14,6 @@ const Error = () => {
 
 	return (
 		<div className="errorPage-container">
-			<HorizontalNav />
-			<VerticalNav />
 
 			<section className="errorPage">
 				<span className="errorPage__title">Oups...</span>
