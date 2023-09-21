@@ -1,28 +1,90 @@
-import { useNavigate } from 'react-router-dom'
-
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import Dashboard from "../../components/body/Dashboard";
+import {
+  getMainData,
+  getActivityData,
+  getSessionsData,
+  getPerformanceData,
+} from "../../treatments/services/SportSeeService.js";
 
 const Home = () => {
-	
-	// Je crée une constante navigate qui me permet de naviguer vers une autre page
-	const navigate = useNavigate()
 
-	// Je crée une fonction qui vérifie que le state data est bien rempli et donc que les données de l'utilisateur ont bien été récupérées par Axios
-	const checkData = (data) => {
-		if (!data) {
-			// Si le state data est vide, je navigue vers la page d'erreur en passant un message d'erreur dans le state
-			navigate('/404', { state: { message: "Can't get data" } })
-		}
-	}
+  const [data, setData] = useState({
+    main: null,
+    activity: null,
+    sessions: null,
+    performance: null,
+  });
 
+  const { userId } = useParams();
+  const navigate = useNavigate();
 
+  const redirectToErrorPage = (condition, errorMessage) => {
+    if (condition) {
+      navigate("/404", { state: { message: errorMessage } });
+    }
+  };
 
+  const checkUserId = (userId) => {
+    redirectToErrorPage(userId !== "12" && userId !== "18", "Invalid user ID");
+  };
 
-	return (
-		// Je vérifie que le state data est bien rempli et je passe les données de l'utilisateur en props aux composants Dashboard, HorizontalNav et VerticalNav
-		<div className="errorPage-container">
-Home page
-		</div>
-	)
-}
+  const checkData = (data) => {
+    redirectToErrorPage(!data, "Can't get data");
+  };
+  
+  // Function to fetch data and update state
+  const fetchData = async () => {
+    try {
+      const [mainResponse, activity, sessions, performance] = await Promise.all(
+        [
+          getMainData(userId),
+          getActivityData(userId),
+          getSessionsData(userId),
+          getPerformanceData(userId),
+        ]
+      );
 
-export default Home
+      if (mainResponse.errorCode === "ERR_NETWORK") {
+        redirectToErrorPage(true, "API_ERROR");
+        return;
+      }
+
+      setData({
+        main: mainResponse.data,
+        activity,
+        sessions,
+        performance,
+      });
+
+      // Check user ID after fetching data
+      checkUserId(userId);
+      checkData(data);
+
+    } catch (error) {
+      redirectToErrorPage(true, "Error fetching data");
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return (
+    // Render the Dashboard component if data is available
+    data && (
+      <Dashboard
+        userId={userId}
+        user={data.main ? data.main.getFirstName() : ""}
+        sessions={data.activity ? data.activity.getSessions() : []}
+        nutritionData={data.main ? data.main.getKeyData() : []}
+        todayScore={data.main ? data.main.getTodayScore() : 0}
+        performanceData={data.performance ? data.performance.getData() : []}
+        sessionLength={data.sessions ? data.sessions.getSessions() : []}
+      />
+    )
+  );
+};
+
+export default Home;

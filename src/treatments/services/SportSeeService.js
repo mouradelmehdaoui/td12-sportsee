@@ -1,8 +1,8 @@
 import axios from 'axios'
-import MainDataModel from './MainDataModel'
-import ActivityModel from './ActivityModel'
-import SessionsModel from './SessionsModel'
-import PerformanceModel from './PerformanceModel'
+import MainData from '../model/MainData'
+import Activity from '../model/Activity'
+import Sessions from '../model/Session'
+import Performance from '../model/Performance'
 import environment from '../../environment/environment'
 
 const HOST = environment.host;
@@ -14,7 +14,7 @@ export const getMainData = async (user) => {
 
 	try {
 		const userMain = await axios.get(mainDataUrl)
-		const userMainData = new MainDataModel(userMain.data.data)
+		const userMainData = new MainData(userMain.data.data)
 		// Je retourne un objet avec les données de l'utilisateur et le code d'erreur
 		return { data: userMainData, errorCode }
 	} catch (error) {
@@ -28,11 +28,11 @@ export const getMainData = async (user) => {
 
 export const getActivityData = async (user) => {
 	// Je précise l'url de l'API pour récupérer les données d'activité de l'utilisateur
-	let activityDataUrl = `${HOST}//user/${user}/activity`
+	let activityDataUrl = `${HOST}/user/${user}/activity`
 
 	try {
 		const userActivity = await axios.get(activityDataUrl)
-		const userActivityData = new ActivityModel(userActivity.data.data)
+		const userActivityData = new Activity(userActivity.data.data)
 		return userActivityData
 	} catch (error) {
 		console.log(error)
@@ -45,7 +45,7 @@ export const getSessionsData = async (user) => {
 
 	try {
 		const userSessions = await axios.get(sessionsDataUrl)
-		const userSessionsData = new SessionsModel(userSessions.data.data)
+		const userSessionsData = new Sessions(userSessions.data.data)
 		return userSessionsData
 	} catch (error) {
 		console.log(error)
@@ -59,7 +59,7 @@ export const getPerformanceData = async (user) => {
 	try {
 		const userPerformance = await axios.get(performanceDataUrl)
 
-		const userPerformanceData = new PerformanceModel(userPerformance.data.data)
+		const userPerformanceData = new Performance(userPerformance.data.data)
 		return userPerformanceData
 	} catch (error) {
 		console.log(error)
