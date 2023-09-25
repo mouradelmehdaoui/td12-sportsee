@@ -1,0 +1,47 @@
+@use "../utils/" as *;
+
+.verticalButtons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 20rem;
+    width: 4rem;
+    margin: auto;
+}
+
+.verticalContainer {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    top: 0;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    width: 117px;
+    background-color: $header-sidebar-bg-color;
+}
+
+.copyright {
+    display: flex;
+    color: white;
+    white-space: nowrap;
+    @include font(0.75rem, 500);
+    margin-bottom: 6.5rem;
+    transform: rotate(-90deg);
+}
+
+.activity-button {
+    display: flex;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 6px;
+    background-color: white;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        border: 2px solid $primary-color;
+        background-color: lightpink;
+    }
+}

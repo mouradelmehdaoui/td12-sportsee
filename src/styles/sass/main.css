@@ -1,0 +1,476 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Roboto:wght@400;500;700&display=swap");
+/*
+    Media queries mixins 
+
+    Will in the future change the syntax in the range with a less obsolete version
+    ex: @media screen and ( map-get($breakpoints, mobile) <= width <=  map-get($breakpoints, tablet) ){...}
+
+    We can also go a little further by adding custom media queries
+
+    ex: 
+        @custom-media --tablet-range (768px <= width <= 992px);
+
+        @mixin desktop-only {
+            @media --tablet-range {
+                @content;
+            }
+        }
+
+*/
+.active {
+  -webkit-text-decoration: underline 2px;
+          text-decoration: underline 2px;
+  color: var(--header-sidebar-color);
+}
+
+@keyframes blink {
+  from {
+    opacity: 80%;
+  }
+  to {
+    opacity: 20%;
+  }
+}
+@keyframes hammering {
+  from {
+    rotate: 45deg;
+  }
+  to {
+    rotate: -80deg;
+  }
+}
+@keyframes blink {
+  from {
+    opacity: 80%;
+  }
+  to {
+    opacity: 20%;
+  }
+}
+@keyframes hammering {
+  from {
+    rotate: 45deg;
+  }
+  to {
+    rotate: -80deg;
+  }
+}
+/*
+    Media queries mixins 
+
+    Will in the future change the syntax in the range with a less obsolete version
+    ex: @media screen and ( map-get($breakpoints, mobile) <= width <=  map-get($breakpoints, tablet) ){...}
+
+    We can also go a little further by adding custom media queries
+
+    ex: 
+        @custom-media --tablet-range (768px <= width <= 992px);
+
+        @mixin desktop-only {
+            @media --tablet-range {
+                @content;
+            }
+        }
+
+*/
+:root {
+  --body-bg-color:white;
+  --header-sidebar-bg-color:#020203;
+  --header-sidebar-color:white;
+  --shadow-color: rgba(0, 0, 0, 0.7490196078);
+  --gauge-bg-inner-circle-bg-color: rgba(255, 255, 255, 0.2);
+  --calorie-icon-color: rgba(255, 0, 0, 0.1019607843);
+  --proteins-icon-color: rgba(74, 184, 255, 0.1019607843);
+  --carbohydrates-icon-color: rgba(253, 204, 12, 0.1019607843);
+  --fats-icon-color: rgba(253, 81, 129, 0.1019607843);
+  --spin-loader-ball-bg-color-from: rgb(128, 128, 128);
+  --spin-loader-ball-bg-color-to: rgb(168, 168, 168);
+  --scrollbar-track-bg-color: rgb(211, 211, 211);
+  --scrollbar-thumb-bg-color: rgb(139, 140, 140);
+  --scrollbar-thumb-bg-color--hover: #727272;
+  --scrollbar-thumb-bg-color--active: #585959;
+  --bg-color-primary:red;
+  --bg-color-secondary:#282D30;
+  --bg-color-tertiary:#f1f0f0;
+  --radar-line-stroke-color: rgb(204, 204, 204);
+  --text-color-primary:black;
+  --text-color-secondary:#282d30;
+  --text-color-tertiary:#fbfbfb;
+  --text-color-quaternary:white;
+  --bars-bg-color--hover:rgba(196, 196, 196, 0.5019607843);
+}
+
+/************ MINI RESET ************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+  line-height: 24px;
+}
+
+#root {
+  display: flex;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 100%;
+  font-weight: normal;
+}
+
+main {
+  margin: 140px 90px 88px 210px;
+  width: 70.5rem;
+  max-width: 1440px;
+}
+
+.errorPage-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.errorPage {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 117px;
+  margin-top: 60px;
+  background-color: #fbfbfb;
+}
+.errorPage__title {
+  color: #fbfbfb;
+  font-size: 5rem;
+  font-weight: 700;
+  margin-bottom: 5rem;
+}
+.errorPage__text {
+  color: black;
+  font-size: 3rem;
+  font-weight: 500;
+  display: flex;
+}
+
+.userName {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #74798c;
+}
+
+.userSelection-container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+}
+
+.userSelection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin-left: 117px;
+  margin-top: 91px;
+}
+.userSelection__title {
+  font-size: 2rem;
+  font-weight: 500;
+  color: #74798c;
+  margin-bottom: 3rem;
+}
+.userSelection__list {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 38rem;
+  height: 22rem;
+}
+.userSelection__list-item {
+  display: flex;
+  flex-direction: column;
+  width: 15rem;
+  height: 15rem;
+  border-radius: 50px;
+  background: linear-gradient(145deg, #f0f0f0, #cacaca);
+  box-shadow: 24px 24px 48px #b8b8b8, -24px -24px 48px #ffffff;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798c;
+  cursor: pointer;
+}
+.userSelection__list-item__btn {
+  width: 6rem;
+  height: 6rem;
+  border-radius: 50%;
+}
+.userSelection__list-item__btn:hover {
+  box-shadow: 0px 0px 35px 0px rgba(255, 0, 0, 0.6);
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 48px;
+  font-weight: 500;
+}
+
+p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+text {
+  font-family: "Roboto", sans-serif;
+}
+
+tspan {
+  font-size: 12px;
+}
+
+button {
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+}
+
+.error-404 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 75px;
+}
+.error-404__text {
+  text-align: center;
+  color: black !important;
+}
+.error-404__title {
+  font-weight: 700;
+  font-size: 288px;
+}
+@media screen and (max-width: 768px) {
+  .error-404__title {
+    font-size: 96px;
+  }
+}
+.error-404__sub-title {
+  font-size: 36px;
+}
+@media screen and (max-width: 768px) {
+  .error-404__sub-title {
+    font-size: 18px;
+  }
+}
+.error-404__link {
+  text-decoration: underline;
+  color: black !important;
+  margin-bottom: 125px;
+}
+.error-404__link:hover {
+  color: black !important;
+}
+@media screen and (max-width: 768px) {
+  .error-404__link {
+    font-size: 14px;
+  }
+}
+
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-metrics {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 38rem;
+}
+
+.dashboard-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 3.8rem;
+}
+.dashboard-header__user-container {
+  display: flex;
+  align-items: baseline;
+  margin-bottom: 1.75rem;
+  font-size: 2.5rem;
+  font-weight: 500;
+}
+.dashboard-header__user-congrats {
+  font-size: 1rem;
+}
+.dashboard-header h2 {
+  margin-left: 10px;
+  color: black;
+}
+
+.nutrition_container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 613px;
+  width: 258px;
+  color: #282d30;
+}
+
+.red {
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+.blue {
+  background-color: rgba(74, 184, 255, 0.1);
+}
+
+.yellow {
+  background-color: rgba(249, 206, 35, 0.1);
+}
+
+.pink {
+  background-color: rgba(253, 81, 129, 0.1);
+}
+
+.nutrition-card {
+  display: flex;
+  width: 258px;
+  height: 124px;
+  border-radius: 5px;
+  background: #fbfbfb;
+}
+.nutrition-card:hover {
+  cursor: pointer;
+  box-shadow: 0px 0px 25px 0px var(--hover-color);
+}
+
+.nutrition-card-infos {
+  display: flex;
+  align-items: center;
+  margin: auto;
+  width: 175px;
+  height: 60px;
+}
+.nutrition-card-infos__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 5px;
+}
+.nutrition-card-infos__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 24px;
+}
+
+.amount-unit {
+  font-size: 20px;
+  font-weight: 700;
+  color: #282d30;
+}
+
+.type-name {
+  font-size: 14px;
+  font-weight: 500;
+  color: #74798c;
+}
+
+.horizontal_links {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 69%;
+  height: 24px;
+  margin-right: 6%;
+}
+.horizontal_links a {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: white;
+  text-decoration: none;
+}
+.horizontal_links a:hover {
+  color: black;
+}
+
+.horizontalContainer {
+  display: flex;
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 91px;
+  background-color: #020203;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.verticalButtons-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  height: 20rem;
+  width: 4rem;
+  margin: auto;
+}
+
+.verticalContainer {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 117px;
+  background-color: #020203;
+}
+
+.copyright {
+  display: flex;
+  color: white;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin-bottom: 6.5rem;
+  transform: rotate(-90deg);
+}
+
+.activity-button {
+  display: flex;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 6px;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+}
+.activity-button:hover {
+  border: 2px solid #ff0000;
+  background-color: lightpink;
+}/*# sourceMappingURL=main.css.map */

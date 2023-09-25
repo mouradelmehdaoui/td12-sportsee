@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Dashboard from "../../components/body/Dashboard";
+import NavHeader from "../../components/static/NavHeader";
+import NavSideBar from "../../components/static/NavSideBar";
+import Dashboard from "../../components/body/Dashsboard/Dashboard";
 import {
   getMainData,
   getActivityData,
@@ -9,7 +11,6 @@ import {
 } from "../../treatments/services/SportSeeService.js";
 
 const Home = () => {
-
   const [data, setData] = useState({
     main: null,
     activity: null,
@@ -33,7 +34,7 @@ const Home = () => {
   const checkData = (data) => {
     redirectToErrorPage(!data, "Can't get data");
   };
-  
+
   // Function to fetch data and update state
   const fetchData = async () => {
     try {
@@ -61,7 +62,6 @@ const Home = () => {
       // Check user ID after fetching data
       checkUserId(userId);
       checkData(data);
-
     } catch (error) {
       redirectToErrorPage(true, "Error fetching data");
     }
@@ -74,15 +74,19 @@ const Home = () => {
   return (
     // Render the Dashboard component if data is available
     data && (
-      <Dashboard
-        userId={userId}
-        user={data.main ? data.main.getFirstName() : ""}
-        sessions={data.activity ? data.activity.getSessions() : []}
-        nutritionData={data.main ? data.main.getKeyData() : []}
-        todayScore={data.main ? data.main.getTodayScore() : 0}
-        performanceData={data.performance ? data.performance.getData() : []}
-        sessionLength={data.sessions ? data.sessions.getSessions() : []}
-      />
+      <>
+        <NavHeader />
+        <NavSideBar />
+        <Dashboard
+          userId={userId}
+          user={data.main ? data.main.getFirstName() : ""}
+          sessions={data.activity ? data.activity.getSessions() : []}
+          nutritionData={data.main ? data.main.getKeyData() : []}
+          todayScore={data.main ? data.main.getTodayScore() : 0}
+          performanceData={data.performance ? data.performance.getData() : []}
+          sessionLength={data.sessions ? data.sessions.getSessions() : []}
+        />
+      </>
     )
   );
 };

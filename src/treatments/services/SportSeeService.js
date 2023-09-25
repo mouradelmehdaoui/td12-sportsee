@@ -12,13 +12,15 @@ export const getMainData = async (user) => {
 	// Je précise l'url de l'API pour récupérer les données principales de l'utilisateur
 	let mainDataUrl = `${HOST}/user/${user}`
 
+	
+
 	try {
 		const userMain = await axios.get(mainDataUrl)
 		const userMainData = new MainData(userMain.data.data)
 		// Je retourne un objet avec les données de l'utilisateur et le code d'erreur
 		return { data: userMainData, errorCode }
 	} catch (error) {
-		if (error.code === 'ERR_NETWORK') {
+		if (error.code === 'Network Error') {
 			errorCode = error.code
 			console.log('problème API, code :', errorCode)
 		}

@@ -1,0 +1,79 @@
+//SASS variables
+//
+$body-bg-color: white;
+$header-sidebar-bg-color: #020203;
+$header-sidebar-color: white;
+
+$shadow-color: #000000bf;
+
+$gauge-bg-inner-circle-bg-color: #ffffff33;
+
+$scrollbar-track-bg-color: rgb(211, 211, 211);
+$scrollbar-thumb-bg-color: rgb(139, 140, 140);
+$scrollbar-thumb-bg-color--hover: darken($scrollbar-thumb-bg-color, 10%);
+$scrollbar-thumb-bg-color--active: darken($scrollbar-thumb-bg-color, 20%);
+
+$calorie-icon-color: #ff00001a;
+$proteins-icon-color: #4ab8ff1a;
+$carbohydrates-icon-color: #fdcc0c1a;
+$fats-icon-color: #fd51811a;
+
+$spin-loader-ball-bg-color-from: rgb(128, 128, 128);
+$spin-loader-ball-bg-color-to: rgb(168, 168, 168);
+
+$bg-color-primary: red;
+$bg-color-secondary: #282D30;
+$bg-color-tertiary: #f1f0f0;
+$gray-font-color: #74798c;
+
+$primary-color: #ff0000;
+$secondary-color: #282d30;
+$tertiary-color: #fbfbfb;
+
+
+$radar-line-stroke-color: rgb(204, 204, 204);
+
+$text-color-primary: black;
+$text-color-secondary: #282d30;
+$text-color-tertiary: #fbfbfb;
+$text-color-quaternary: white;
+
+$bars-bg-color--hover: #C4C4C480;
+
+
+//CSS variables
+:root {
+    --body-bg-color:#{$body-bg-color};
+    --header-sidebar-bg-color:#{$header-sidebar-bg-color};
+    --header-sidebar-color:#{$header-sidebar-color};
+
+    --shadow-color: #{$shadow-color};
+
+    --gauge-bg-inner-circle-bg-color: #{$gauge-bg-inner-circle-bg-color};
+
+    --calorie-icon-color: #{$calorie-icon-color};
+    --proteins-icon-color: #{$proteins-icon-color};
+    --carbohydrates-icon-color: #{$carbohydrates-icon-color};
+    --fats-icon-color: #{$fats-icon-color};
+
+    --spin-loader-ball-bg-color-from: #{$spin-loader-ball-bg-color-from};
+    --spin-loader-ball-bg-color-to: #{$spin-loader-ball-bg-color-to};
+
+    --scrollbar-track-bg-color: #{$scrollbar-track-bg-color};
+    --scrollbar-thumb-bg-color: #{$scrollbar-thumb-bg-color};
+    --scrollbar-thumb-bg-color--hover: #{$scrollbar-thumb-bg-color--hover};
+    --scrollbar-thumb-bg-color--active: #{$scrollbar-thumb-bg-color--active};
+
+    --bg-color-primary:#{$bg-color-primary};
+    --bg-color-secondary:#{$bg-color-secondary};
+    --bg-color-tertiary:#{$bg-color-tertiary};
+
+    --radar-line-stroke-color: #{$radar-line-stroke-color};
+
+    --text-color-primary:#{$text-color-primary};
+    --text-color-secondary:#{$text-color-secondary};
+    --text-color-tertiary:#{$text-color-tertiary};
+    --text-color-quaternary:#{$text-color-quaternary};
+
+    --bars-bg-color--hover:#{$bars-bg-color--hover};
+}

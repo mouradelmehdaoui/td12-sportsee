@@ -1,3 +1,5 @@
+import Nutritionnels from "../Nutritions/Nutritionnels";
+
 export default function Dashboard({
 	userId,
 	user,
@@ -22,6 +24,7 @@ export default function Dashboard({
 					todayScore={todayScore}
 					performanceDataAll={performanceData}
 					sessionLength={sessionLength} */}
+					<Nutritionnels nutritionData={nutritionData} />
 				</section>
 		</main>
 	)
