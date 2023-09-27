@@ -1,69 +1,83 @@
-import axios from 'axios'
-import MainData from '../model/MainData'
-import Activity from '../model/Activity'
-import Sessions from '../model/Session'
-import Performance from '../model/Performance'
-import environment from '../../environment/environment'
+import axios from "axios";
+import MainData from "../model/MainData";
+import Activity from "../model/Activity";
+import Sessions from "../model/Sessions";
+import Performance from "../model/Performance";
+import environment from "../../environment/environment";
 
-const HOST = environment.host;
+const HOST = environment.production ? "http://localhost:3001" : "/mocks";
+
+const loadUserData = async (user, dataKey) => {
+  try {
+    if (!environment.production) {
+      const mockData = await loadMockData(`userData`);
+      const userMainFilter = mockData.find(({ id }) => id === parseInt(user));
+
+      switch (dataKey) {
+        case "MainData":
+          return new MainData(userMainFilter);
+        case "Activity":
+          return new Activity(userMainFilter);
+        case "Sessions":
+          return new Sessions(userMainFilter);
+        case "Performance":
+          return new Performance(userMainFilter);
+        default:
+          throw new Error(`Invalid dataKey: ${dataKey}`);
+      }
+    } else {
+      const userData = await axios.get(`${HOST}/user/${user}`);
+      const userDataObject = userData.data.data;
+
+      switch (dataKey) {
+        case "MainData":
+          return new MainData(userDataObject);
+        case "Activity":
+          return new Activity(userDataObject);
+        case "Sessions":
+          return new Sessions(userDataObject);
+        case "Performance":
+          return new Performance(userDataObject);
+        default:
+          throw new Error(`Invalid dataKey: ${dataKey}`);
+      }
+    }
+  } catch (error) {
+    console.error(error);
+    return null;
+  }
+};
+
+const loadMockData = async (fileName) => {
+  try {
+    const response = await axios.get(`${HOST}/${fileName}.json`);
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error(`Failed to fetch mock data: ${response.statusText}`);
+    }
+  } catch (error) {
+    throw new Error(`Failed to load mock data: ${error.message}`);
+  }
+};
 
 export const getMainData = async (user) => {
-	let errorCode = null
-	// Je précise l'url de l'API pour récupérer les données principales de l'utilisateur
-	let mainDataUrl = `${HOST}/user/${user}`
-
-	
-
-	try {
-		const userMain = await axios.get(mainDataUrl)
-		const userMainData = new MainData(userMain.data.data)
-		// Je retourne un objet avec les données de l'utilisateur et le code d'erreur
-		return { data: userMainData, errorCode }
-	} catch (error) {
-		if (error.code === 'Network Error') {
-			errorCode = error.code
-			console.log('problème API, code :', errorCode)
-		}
-		return { data: null, errorCode }
-	}
-}
+  const dataKey = "MainData";
+  const userMainData = await loadUserData(user, dataKey);
+  return { data: userMainData, errorCode: userMainData ? null : new Error("Failed to load data") };
+};
 
 export const getActivityData = async (user) => {
-	// Je précise l'url de l'API pour récupérer les données d'activité de l'utilisateur
-	let activityDataUrl = `${HOST}/user/${user}/activity`
-
-	try {
-		const userActivity = await axios.get(activityDataUrl)
-		const userActivityData = new Activity(userActivity.data.data)
-		return userActivityData
-	} catch (error) {
-		console.log(error)
-	}
-}
+  const dataKey = "Activity";
+  return await loadUserData(user, dataKey);
+};
 
 export const getSessionsData = async (user) => {
-	// Je précise l'url de l'API pour récupérer les données de sessions de l'utilisateur
-	let sessionsDataUrl = `${HOST}/user/${user}/average-sessions`
-
-	try {
-		const userSessions = await axios.get(sessionsDataUrl)
-		const userSessionsData = new Sessions(userSessions.data.data)
-		return userSessionsData
-	} catch (error) {
-		console.log(error)
-	}
-}
+  const dataKey = "Sessions";
+  return await loadUserData(user, dataKey);
+};
 
 export const getPerformanceData = async (user) => {
-	// Je précise l'url de l'API pour récupérer les données de performance de l'utilisateur
-	let performanceDataUrl = `${HOST}/user/${user}/performance`
-
-	try {
-		const userPerformance = await axios.get(performanceDataUrl)
-
-		const userPerformanceData = new Performance(userPerformance.data.data)
-		return userPerformanceData
-	} catch (error) {
-		console.log(error)
-	}
-}
+  const dataKey = "Performance";
+  return await loadUserData(user, dataKey);
+};

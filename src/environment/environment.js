@@ -1,5 +1,5 @@
  const environment = {
-  production: false,
+  production: true,
   host: 'http://localhost:3001'
 };
 
