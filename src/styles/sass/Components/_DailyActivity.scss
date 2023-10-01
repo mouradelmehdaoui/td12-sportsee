@@ -1,0 +1,35 @@
+@use "../Utils/" as *;
+
+.activity-container {
+    display: flex;
+    flex-direction: column;
+    width: 52rem;
+    height: 20rem;
+    border-radius: 5px;
+    background-color: $tertiary-color;
+
+    & h2 {
+        width: 9rem;
+        color: $dark-blue-font-color;
+        @include font(15px, 500);
+        margin-top: 0.8rem;
+        margin-left: 1.3rem;
+    }
+}
+
+.recharts-legend-item-text {
+    @include font(14px, 500);
+    color: $gray-font-color;
+}
+
+.custom-tooltip {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    @include font(0.75rem, 500);
+    width: 3.5rem;
+    height: 6rem;
+    background-color: #E60000;
+    color: white;
+}

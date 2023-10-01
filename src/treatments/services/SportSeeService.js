@@ -26,17 +26,23 @@ const loadUserData = async (user, dataKey) => {
           throw new Error(`Invalid dataKey: ${dataKey}`);
       }
     } else {
-      const userData = await axios.get(`${HOST}/user/${user}`);
-      const userDataObject = userData.data.data;
+      let userData = await axios.get(`${HOST}/user/${user}`);
+      let userDataObject = userData.data.data;
 
       switch (dataKey) {
         case "MainData":
           return new MainData(userDataObject);
         case "Activity":
+        userData = await axios.get(`${HOST}/user/${user}/activity`);
+        userDataObject = userData.data.data;
           return new Activity(userDataObject);
         case "Sessions":
+          userData = await axios.get(`${HOST}/user/${user}/average-sessions`);
+          userDataObject = userData.data.data;
           return new Sessions(userDataObject);
         case "Performance":
+          userData = await axios.get(`${HOST}/user/${user}/performance`);
+          userDataObject = userData.data.data;
           return new Performance(userDataObject);
         default:
           throw new Error(`Invalid dataKey: ${dataKey}`);

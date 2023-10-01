@@ -11,7 +11,6 @@ import {
 } from "../../treatments/services/SportSeeService.js";
 
 const Home = () => {
-
   const [data, setData] = useState({
     main: null,
     activity: null,
@@ -38,7 +37,6 @@ const Home = () => {
 
   // Function to fetch data and update state
   const fetchData = async () => {
-
     try {
       const [mainResponse, activity, sessions, performance] = await Promise.all(
         [
@@ -49,7 +47,6 @@ const Home = () => {
         ]
       );
 
-      console.log(performance);
       if (mainResponse.errorCode === "ERR_NETWORK") {
         redirectToErrorPage(true, "API_ERROR");
         return;
@@ -62,21 +59,18 @@ const Home = () => {
         sessions,
         performance,
       }));
-      
 
       // Check user ID after fetching data
       checkUserId(userId);
       checkData(data);
-    } catch (error) {  
-      
+    } catch (error) {
       redirectToErrorPage(true, "Error fetching data");
     }
   };
-  
+
   useEffect(() => {
     fetchData();
   }, []);
-
 
   return (
     // Render the Dashboard component if data is available
@@ -85,13 +79,13 @@ const Home = () => {
         <NavHeader />
         <NavSideBar />
         <Dashboard
-      userId={userId}
-      user={data.main?.getFirstName() || ""}
-      sessions={data.activity?.getSessions() || []}
-      nutritionData={data.main?.getKeyData() || []}
-      todayScore={data.main?.getTodayScore() || 0}
-      performanceData={data.performance?.getData() || []}
-      sessionLength={data.sessions?.getSessions() || []}
+          userId={userId}
+          user={data.main?.getFirstName() || ""}
+          sessions={data.activity?.getSessions() || []}
+          nutritionData={data.main?.getKeyData() || []}
+          todayScore={data.main?.getTodayScore() || 0}
+          performanceData={data.performance?.getData() || []}
+          sessionLength={data.sessions?.getSessions() || []}
         />
       </>
     )
