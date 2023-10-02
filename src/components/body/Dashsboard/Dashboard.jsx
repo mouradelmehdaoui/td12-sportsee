@@ -1,5 +1,6 @@
 import DailyActivity from "../DailyActivity/DailyActivity";
 import Nutritionnels from "../Nutritions/Nutritionnels";
+import Score from "../Score/Score";
 
 export default function Dashboard({
   userId,
@@ -24,9 +25,10 @@ export default function Dashboard({
       <section className="dashboard-metrics">
         {/* userId={userId}
 					activitySessions={sessions}
-					todayScore={todayScore}
+					
 					performanceDataAll={performanceData}
 					sessionLength={sessionLength} */}
+        <Score todayScore={todayScore}></Score>
         <DailyActivity sessions={sessions} />
         <Nutritionnels nutritionData={nutritionData} />
       </section>

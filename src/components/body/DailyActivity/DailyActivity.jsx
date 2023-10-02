@@ -14,11 +14,7 @@ export default function DailyActivity({ sessions }) {
   return (
     <div className="activity-container">
       <h2 className="chartHeader__title">Activité quotidienne</h2>
-      <ResponsiveContainer
-        width="100%"
-        height="100%"
-        className={"activityChart"}
-      >
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart
           width={500}
           height={300}
@@ -30,11 +26,14 @@ export default function DailyActivity({ sessions }) {
             bottom: 20,
           }}
         >
+          {/* Ce composant permet d'afficher une grille sur le graphique. */}
           <CartesianGrid
             strokeDasharray="3 3"
             stroke="#dedede"
             vertical={false}
           />
+
+          {/*  Il s'agit d'un autre composant, et il représente l'axe X du graphique. */}
           <XAxis
             dataKey="day"
             tickFormatter={formatChartDate}
@@ -42,6 +41,8 @@ export default function DailyActivity({ sessions }) {
             tickLine={false}
             dy={10}
           />
+
+          {/*  Ce composant représente l'axe Y du graphique.  */}
           <YAxis
             yAxisId="left"
             orientation="left"
@@ -59,6 +60,9 @@ export default function DailyActivity({ sessions }) {
             dx={15}
             dy={-4}
           />
+
+          {/* Tooltipajoute une info-bulle au graphique, permettant aux utilisateurs de voir plus d'informations
+ lorsqu'ils survolent des points de données. */}
           <Tooltip allowEscapeViewBox={{ x: true, y: true }} />
 
           <Legend
@@ -77,6 +81,7 @@ export default function DailyActivity({ sessions }) {
               <span style={{ color: "#74798C" }}>{value}</span>
             )}
           />
+          {/* Barcomposants représentent la série de données sur le graphique. */}
           <Bar
             yAxisId="right"
             name="Poids (kg)"

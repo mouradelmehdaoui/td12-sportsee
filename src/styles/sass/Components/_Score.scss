@@ -1,0 +1,48 @@
+@use "../Utils/" as *;
+
+.score-container {
+    position: relative;
+    display: flex;
+    width: 16rem;
+    height: 16.5rem;
+    border-radius: 5px;
+    background-color: $tertiary-color;
+
+    &__title {
+        position: absolute;
+        top: 0;
+        left: 0;
+        margin-top: 1.2rem;
+        margin-left: 1.3rem;
+        @include font(15px, 500);
+        color: $dark-blue-font-color;
+    }
+}
+
+.scoreLegend-container {
+    position: absolute;
+    top: 37%;
+    left: 34%;
+    display: flex;
+    flex-direction: column;
+    width: 5.5rem;
+    height: 5rem;
+    justify-content: space-around;
+    align-items: center;
+    color: $secondary-color;
+
+    &__scoreValue {
+        display: flex;
+        width: 100%;
+        @include font(1.6rem, 700);
+        justify-content: center;
+    }
+
+    &__scoreText {
+        display: flex;
+        width: 100%;
+        @include font(13px, 400);
+        text-align: center;
+        color: $secondary-color;
+    }
+}
