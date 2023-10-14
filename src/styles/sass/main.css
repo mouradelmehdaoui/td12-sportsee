@@ -324,14 +324,29 @@ button {
   color: black;
 }
 
+.chartsZone-container {
+  display: flex;
+  align-items: center;
+  gap: 1.7rem;
+}
+
+.littleCharts-container {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .nutrition_container {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  height: 613px;
+  height: 747px;
   width: 258px;
   color: #282d30;
+  position: relative;
+  top: -248px;
 }
 
 .red {
@@ -353,7 +368,7 @@ button {
 .nutrition-card {
   display: flex;
   width: 258px;
-  height: 124px;
+  height: 160px;
   border-radius: 5px;
   background: #fbfbfb;
 }
@@ -419,6 +434,14 @@ button {
   color: #74798c;
 }
 
+.bigChart-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52rem;
+  height: 20rem;
+}
+
 .custom-tooltip {
   display: flex;
   flex-direction: column;
@@ -477,6 +500,66 @@ button {
   font-weight: 400;
   text-align: center;
   color: #282d30;
+}
+
+.session-container {
+  display: flex;
+  width: 16rem;
+  height: 16.5rem;
+  border-radius: 5px;
+  background-color: #F00;
+}
+
+.custom-tooltip-sessions {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  font-size: 0.75rem;
+  font-weight: 500;
+  width: 3.5rem;
+  height: 2rem;
+  background-color: white;
+  color: black;
+}
+
+.recharts-legend-wrapper p {
+  position: absolute;
+  width: 147px;
+  height: auto;
+  left: 25px;
+  bottom: 190px;
+}
+
+.sessions-custom-legend {
+  color: white;
+  font-size: 15px;
+  font-weight: 500;
+  opacity: 0.5039569736;
+}
+
+.radar-container {
+  display: flex;
+  width: 16rem;
+  height: 16.5rem;
+  border-radius: 5px;
+  background-color: #282d30;
+}
+
+.recharts-polar-angle-axis-tick:nth-child(1) {
+  transform: translateY(-0.5rem);
+}
+.recharts-polar-angle-axis-tick:nth-child(3) {
+  transform: translateX(0.1rem) translateY(0.5rem);
+}
+.recharts-polar-angle-axis-tick:nth-child(4) {
+  transform: translateY(0.8rem);
+}
+.recharts-polar-angle-axis-tick:nth-child(5) {
+  transform: translateX(-0.2rem) translateY(0.4rem);
+}
+.recharts-polar-angle-axis-tick:nth-child(6) {
+  transform: translateY(-0.2rem) translateX(-0.2rem);
 }
 
 .horizontal_links {

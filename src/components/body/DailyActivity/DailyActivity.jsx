@@ -11,7 +11,9 @@ import {
 import { formatChartDate } from "../../../treatments/services/utils/toolBox";
 
 export default function DailyActivity({ sessions }) {
+
   return (
+    <article className="bigChart-container">
     <div className="activity-container">
       <h2 className="chartHeader__title">Activité quotidienne</h2>
       <ResponsiveContainer width="100%" height="100%">
@@ -101,5 +103,6 @@ export default function DailyActivity({ sessions }) {
         </BarChart>
       </ResponsiveContainer>
     </div>
+    </article>
   );
 }

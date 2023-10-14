@@ -37,3 +37,17 @@
 		color: $text-color-primary;
 	}
 }
+
+.chartsZone-container {
+    display: flex;
+    align-items: center;
+    gap: 1.7rem;
+}
+
+
+.littleCharts-container {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+}

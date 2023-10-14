@@ -1,0 +1,32 @@
+@use "../Utils/" as *;
+
+.radar-container {
+    display: flex;
+    width: 16rem;
+    height: 16.5rem;
+    border-radius: 5px;
+    background-color: $secondary-color;
+}
+
+// J'utilise nth-child pour cibler les éléments du radar et les placer à l'identique de la maquette
+.recharts-polar-angle-axis-tick {
+    &:nth-child(1) {
+        transform: translateY(-0.5rem);
+    }
+
+    &:nth-child(3) {
+        transform: translateX(0.1rem) translateY(0.5rem);
+    }
+
+    &:nth-child(4) {
+        transform: translateY(0.8rem);
+    }
+
+    &:nth-child(5) {
+        transform: translateX(-0.2rem) translateY(0.4rem);
+    }
+
+    &:nth-child(6) {
+        transform: translateY(-0.2rem) translateX(-0.2rem);
+    }
+}

@@ -5,9 +5,11 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    height: 613px;
+    height: 747px;
     width: 258px;
-    color: $secondary-color;
+    color: #282d30;
+    position: relative;
+    top: -248px;
 }
 
 
@@ -31,7 +33,7 @@
 .nutrition-card {
     display: flex;
     width: 258px;
-    height: 124px;
+    height: 160px;
     border-radius: 5px;
     background: $tertiary-color;
 

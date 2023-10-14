@@ -10,18 +10,30 @@ const HOST = environment.production ? "http://localhost:3001" : "/mocks";
 const loadUserData = async (user, dataKey) => {
   try {
     if (!environment.production) {
-      const mockData = await loadMockData(`userData`);
+      let mockData = await loadMockData(`userData`);
       const userMainFilter = mockData.find(({ id }) => id === parseInt(user));
 
       switch (dataKey) {
         case "MainData":
           return new MainData(userMainFilter);
         case "Activity":
-          return new Activity(userMainFilter);
+          mockData = await loadMockData(`userActivityData`);
+          const userActivity = mockData.filter(
+            (data) => data.userId === userMainFilter.id
+          );
+          return new Activity(userActivity[0]);
         case "Sessions":
-          return new Sessions(userMainFilter);
+          mockData = await loadMockData(`userSessionsData`);
+          const userSessions = mockData.filter(
+            (data) => data.userId === userMainFilter.id
+          );
+          return new Sessions(userSessions[0]);
         case "Performance":
-          return new Performance(userMainFilter);
+          mockData = await loadMockData(`userPerformanceData`);
+          const userSPerformance = mockData.filter(
+            (data) => data.userId === userMainFilter.id
+          );
+          return new Performance(userSPerformance[0]);
         default:
           throw new Error(`Invalid dataKey: ${dataKey}`);
       }
@@ -33,8 +45,8 @@ const loadUserData = async (user, dataKey) => {
         case "MainData":
           return new MainData(userDataObject);
         case "Activity":
-        userData = await axios.get(`${HOST}/user/${user}/activity`);
-        userDataObject = userData.data.data;
+          userData = await axios.get(`${HOST}/user/${user}/activity`);
+          userDataObject = userData.data.data;
           return new Activity(userDataObject);
         case "Sessions":
           userData = await axios.get(`${HOST}/user/${user}/average-sessions`);
@@ -70,7 +82,10 @@ const loadMockData = async (fileName) => {
 export const getMainData = async (user) => {
   const dataKey = "MainData";
   const userMainData = await loadUserData(user, dataKey);
-  return { data: userMainData, errorCode: userMainData ? null : new Error("Failed to load data") };
+  return {
+    data: userMainData,
+    errorCode: userMainData ? null : new Error("Failed to load data"),
+  };
 };
 
 export const getActivityData = async (user) => {

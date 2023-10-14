@@ -1,0 +1,35 @@
+@use "../Utils/" as *;
+
+.session-container {
+    display: flex;
+    width: 16rem;
+    height: 16.5rem;
+    border-radius: 5px;
+    background-color: #F00;
+}
+
+.custom-tooltip-sessions {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    @include font(0.75rem, 500);
+    width: 3.5rem;
+    height: 2rem;
+    background-color: white;
+    color: black;
+}
+
+.recharts-legend-wrapper p {
+    position: absolute;
+    width: 147px;
+    height: auto;
+    left: 25px;
+    bottom: 190px;
+}
+
+.sessions-custom-legend {
+    color: white;
+    @include font(15px, 500);
+    opacity: 0.5039569735527039;
+}

@@ -1,6 +1,8 @@
 import DailyActivity from "../DailyActivity/DailyActivity";
 import Nutritionnels from "../Nutritions/Nutritionnels";
+import SessionLength from "../SessionLength/SessionLength";
 import Score from "../Score/Score";
+import Radar from "../Radar/Radar";
 
 export default function Dashboard({
   userId,
@@ -22,15 +24,14 @@ export default function Dashboard({
           Félicitations ! Vous avez explosé vos objectifs, hier 👏
         </p>
       </section>
+      <DailyActivity sessions={sessions} />
       <section className="dashboard-metrics">
-        {/* userId={userId}
-					activitySessions={sessions}
-					
-					performanceDataAll={performanceData}
-					sessionLength={sessionLength} */}
-        <Score todayScore={todayScore}></Score>
-        <DailyActivity sessions={sessions} />
-        <Nutritionnels nutritionData={nutritionData} />
+        <section className="chartsZone-container">
+          <SessionLength sessionLength={sessionLength} />
+          <Radar userId={userId} performanceDataAll={performanceData} />
+          <Score todayScore={todayScore}></Score>
+          <Nutritionnels nutritionData={nutritionData} />
+        </section>
       </section>
     </main>
   );

@@ -22,6 +22,14 @@
     color: $gray-font-color;
 }
 
+.bigChart-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52rem;
+    height: 20rem;
+}
+
 .custom-tooltip {
     display: flex;
     flex-direction: column;
