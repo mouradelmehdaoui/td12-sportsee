@@ -1,0 +1,9 @@
+@use "../Utils/" as *;
+
+.serverOff {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 75px;
+}

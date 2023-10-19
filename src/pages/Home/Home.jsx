@@ -70,7 +70,11 @@ const Home = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [userId]);
+
+  if (!data.main || !data.activity || !data.sessions || !data.performance) {
+    return <div className="serverOff">No response from server.....</div>;
+  }
 
   return (
     // Render the Dashboard component if data is available
